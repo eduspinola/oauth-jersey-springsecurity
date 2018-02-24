@@ -19,7 +19,7 @@ public class Usuario {
     private String password;
 
     @JsonIgnoreProperties("usuarios")
-    @ManyToMany(mappedBy = "usuarios")
+    @ManyToMany(mappedBy = "usuarios", fetch = FetchType.EAGER)
     private List<Role> roles;
 
     public Usuario() {}

@@ -2,9 +2,11 @@ package br.com.devmedia.wsjwt.config.security;
 
 import br.com.devmedia.wsjwt.domain.Usuario;
 import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 public class ResourceOwner implements UserDetails {
 
@@ -18,7 +20,9 @@ public class ResourceOwner implements UserDetails {
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return usuario.getRoles().stream()
+                .map((role) -> new SimpleGrantedAuthority(role.getNome()))
+                .collect(Collectors.toList());
     }
 
     public Long getId() {
