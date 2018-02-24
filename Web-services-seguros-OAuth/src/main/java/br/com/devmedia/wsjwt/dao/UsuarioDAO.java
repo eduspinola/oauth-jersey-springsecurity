@@ -2,12 +2,10 @@ package br.com.devmedia.wsjwt.dao;
 
 import br.com.devmedia.wsjwt.domain.Usuario;
 import org.springframework.stereotype.Repository;
-import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
-import java.util.Optional;
 
 @Repository
 public class UsuarioDAO {
@@ -42,7 +40,7 @@ public class UsuarioDAO {
 
     public Usuario recuperarUsuarioPorLogin(String username) {
         try {
-            return em.createQuery("SELECT u FROM Usuario u WHERE u.username = :username", Usuario.class)
+            return em.createQuery("SELECT u FROM Usuario u inner join u.roles r WHERE u.username = :username", Usuario.class)
                     .setParameter("username", username)
                     .getSingleResult();
         } catch (NoResultException ex) {

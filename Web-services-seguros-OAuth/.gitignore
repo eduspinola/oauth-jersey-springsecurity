@@ -1,0 +1,17 @@
+*.iml
+.orig
+.idea/
+.idea/**
+.idea
+.settings
+.project
+.classpath
+.gradle/
+target/
+bin/
+build/
+src/main/webapp/assets/bower_components/
+.DS_Store
+workspace/
+*.mvn/
+**/dump.rdb
